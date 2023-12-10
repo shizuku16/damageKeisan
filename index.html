@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script>
+    function out(){
+        let str=document.getElementById("input").value;
+        const dec=document.getElementById("dec").value;
+        let output=str.match(/\d+\n|\d+$/g);
+        output=output.map(e=>Number(e.replace(/\n/,"")));
+        let i=":HP";
+        output.map(e=>{
+        if(e<dec) return
+        i+=`-${e}+${dec}`
+        })
+        navigator.clipboard.writeText(i.replace(/\+0/g,""));
+    }
+</script>
+<body>
+    マナ耐性：<input type="number" id="dec" min="0"><br><br>
+    <textarea id="input" oninput="out()"></textarea>
+    <button onclick="out()">出力</button>
+</body>
+</html>
